@@ -12,7 +12,7 @@ export const profile: Profile = {
   linkedin: undefined, // TODO: https://www.linkedin.com/in/your-handle'
   orcid: undefined,
   location: 'Biel, Switzerland',
-  photoUrl: '/sivanirosh/PersonalPhoto.webp',
+  photoUrl: '/PersonalPhoto.webp',
 
   stats: [
     // { label: 'Years in ML', value: '3' },

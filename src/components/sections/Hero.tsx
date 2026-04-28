@@ -127,7 +127,7 @@ export function Hero() {
               <ArrowRight className="relative w-4 h-4" />
             </Link>
             <a
-              href="/sivanirosh/cv.pdf"
+              href="/cv.pdf"
               download
               className="
                 inline-flex items-center gap-2 text-sm font-medium

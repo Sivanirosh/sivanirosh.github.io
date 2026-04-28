@@ -73,7 +73,7 @@ export function Contact() {
           </div>
 
           <a
-            href="/sivanirosh/cv.pdf"
+            href="/cv.pdf"
             download
             className="group relative inline-flex items-center gap-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-medium px-5 py-2.5 rounded-lg overflow-hidden"
           >
