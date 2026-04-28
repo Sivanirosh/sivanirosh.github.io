@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)" />
+    <meta name="description" content="Personal CV and portfolio — BEng Mechanical Engineering + MSc AI in Medicine (Best Thesis Award)." />
+    <meta name="keywords" content="AI, Medical Imaging, Mechanical Engineering, Computer Vision, Deep Learning, Portfolio" />
+    <meta name="author" content="Nirosh Sivanesan" />
+    <meta property="og:title" content="Nirosh Sivanesan — Engineer & AI Researcher" />
+    <meta property="og:description" content="BEng Mechanical Engineering + MSc AI in Medicine (Best Thesis Award). Building robust solutions bridging physical systems and AI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sivanirosh.github.io/sivanirosh/" />
+    <meta property="og:image" content="https://sivanirosh.github.io/sivanirosh/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nirosh Sivanesan — Engineer & AI Researcher" />
+    <meta name="twitter:description" content="BEng Mechanical Engineering + MSc AI in Medicine (Best Thesis Award)." />
+    <title>CV — Nirosh Sivanesan | Engineer & AI Researcher</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var isDark = stored ? stored === 'dark' : prefersDark;
+          if (isDark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

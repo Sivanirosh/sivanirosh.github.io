@@ -1,0 +1,27 @@
+import type { EducationEntry } from '../types'
+
+export const education: EducationEntry[] = [
+  {
+    id: 'msc',
+    institution: 'University of Bern',
+    degree: 'MSc',
+    field: 'Artificial Intelligence in Medicine',
+    startYear: 2023,
+    endYear: 2026,
+    location: 'Bern, Switzerland',
+    award: 'Best Thesis Award 2026',
+    description:
+      'Developed a metadata-guided contrastive learning method (KAT-InfoNCE) to improve cross-institution robustness of medical vision–language models for chest X-ray analysis..',
+  },
+  {
+    id: 'bsc',
+    institution: "University of Applied Science of Fribourg / HEIA-FR",
+    degree: 'BSc',
+    field: 'Mechanical Engineering',
+    startYear: 2020,
+    endYear: 2023,
+    location: 'Fribourg, Switzerland',
+    description:
+      'Built a rotor test bench with sensor instrumentation and applied signal processing and machine learning to automate detection and diagnosis of rotordynamic faults.',
+  },
+]
