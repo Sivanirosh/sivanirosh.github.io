@@ -9,7 +9,7 @@ export const profile: Profile = {
 
   email: 'sivanirosh@gmail.com',
   github: 'https://github.com/sivanirosh',
-  linkedin: undefined, // TODO: https://www.linkedin.com/in/your-handle'
+  linkedin: 'https://www.linkedin.com/in/sivanirosh/',
   orcid: undefined,
   location: 'Biel, Switzerland',
   photoUrl: '/PersonalPhoto.webp',
