@@ -57,6 +57,7 @@ export const experience: ExperienceEntry[] = [
     id: 'owner',
     role: 'Owner',
     company: 'Family Business',
+    logoUrl: undefined,
     companyUrl: undefined,
     location: 'La Chaux-de-Fonds, Switzerland',
     startDate: 'Jan 2012',
