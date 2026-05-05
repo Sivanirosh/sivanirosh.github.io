@@ -31,6 +31,6 @@ export const education: EducationEntry[] = [
     field: 'Economics and Business',
     startYear: 2014,
     endYear: 2017,
-    location: 'Fribourg, Switzerland',
+    location: 'Neuchätel, Switzerland',
   },
 ]
