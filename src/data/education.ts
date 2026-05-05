@@ -24,4 +24,13 @@ export const education: EducationEntry[] = [
     description:
       'Built a rotor test bench with sensor instrumentation and applied signal processing and machine learning to automate detection and diagnosis of rotordynamic faults.',
   },
+  {
+    id: 'bsc',
+    institution: "University of Neuchâtel",
+    degree: 'BSc',
+    field: 'Economics and Business',
+    startYear: 2014,
+    endYear: 2017,
+    location: 'Fribourg, Switzerland',
+  },
 ]
