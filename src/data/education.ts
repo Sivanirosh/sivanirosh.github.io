@@ -32,5 +32,7 @@ export const education: EducationEntry[] = [
     startYear: 2014,
     endYear: 2017,
     location: 'Neuchätel, Switzerland',
+    description:
+      "",
   },
 ]
