@@ -28,6 +28,12 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
+
   return (
     <header
       className={clsx(
@@ -42,7 +48,7 @@ export function Navbar() {
         <Link
           to="hero"
           smooth
-          duration={400}
+          duration={200}
           className="flex items-center gap-3 cursor-pointer group"
           aria-label="Back to top"
         >
@@ -70,7 +76,7 @@ export function Navbar() {
               <Link
                 to={item.id}
                 smooth
-                duration={400}
+                duration={200}
                 offset={-60}
                 className={clsx(
                   'text-[13px] transition-colors cursor-pointer',
@@ -113,14 +119,14 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="lg:hidden absolute top-16 inset-x-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="lg:hidden absolute top-16 inset-x-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-sm max-h-[calc(100vh-4rem)] overflow-y-auto">
           <ul className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-3">
             {NAV.map((item) => (
               <li key={item.id}>
                 <Link
                   to={item.id}
                   smooth
-                  duration={400}
+                  duration={200}
                   offset={-60}
                   onClick={() => setOpen(false)}
                   className={clsx(

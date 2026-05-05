@@ -31,6 +31,7 @@ export interface ExperienceEntry {
   role: string
   company: string
   companyUrl?: string
+  logoUrl?: string
   location?: string
   startDate: string
   endDate: string | 'present'

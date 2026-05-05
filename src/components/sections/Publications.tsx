@@ -33,7 +33,7 @@ export function Publications() {
   }, [filter])
 
   return (
-    <section id="publications" className="bg-slate-50 dark:bg-slate-950 py-24 scroll-mt-16">
+    <section id="publications" className="bg-slate-50 dark:bg-slate-950 py-24 scroll-mt-16 border-t border-slate-100 dark:border-slate-800">
       <div className="max-w-5xl mx-auto px-6">
         <RevealWrapper>
           <SectionHeader label="Publications" title="Peer-reviewed work." />
@@ -70,7 +70,7 @@ export function Publications() {
             <RevealWrapper key={pub.id} as="li" delay={i * 0.08}>
               <Card featured={pub.featured}>
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-2">
-                  <p className="text-[11px] uppercase tracking-widest text-teal-600 dark:text-teal-400">
+                  <p className="text-xs uppercase tracking-widest text-teal-600 dark:text-teal-400">
                     {pub.venueType} · {pub.year}
                   </p>
                 </div>
@@ -91,7 +91,7 @@ export function Publications() {
                   )}
                 </h3>
 
-                <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed text-justify hyphens-auto">
                   {pub.authors.map((a, idx) => (
                     <span key={idx}>
                       <span

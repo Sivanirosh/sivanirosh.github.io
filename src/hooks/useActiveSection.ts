@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 export function useActiveSection(sectionIds: string[], offset = 100): string | null {
-  const [active, setActive] = useState<string | null>(sectionIds[0] ?? null)
+  const [active, setActive] = useState<string | null>(null)
 
   useEffect(() => {
     const elements = sectionIds

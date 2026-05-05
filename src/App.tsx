@@ -26,7 +26,18 @@ const Contact = lazy(() =>
 )
 
 function SectionFallback() {
-  return <div className="min-h-[60vh]" aria-hidden />
+  return (
+    <div className="min-h-[60vh] px-6 py-24 max-w-5xl mx-auto space-y-6" aria-hidden>
+      <div className="h-8 w-48 rounded-lg bg-slate-200 dark:bg-slate-800 animate-pulse" />
+      <div className="h-4 w-full rounded bg-slate-100 dark:bg-slate-800/60 animate-pulse" />
+      <div className="h-4 w-5/6 rounded bg-slate-100 dark:bg-slate-800/60 animate-pulse" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+        {[1, 2, 3].map((n) => (
+          <div key={n} className="h-40 rounded-xl bg-slate-100 dark:bg-slate-800/60 animate-pulse" />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default function App() {

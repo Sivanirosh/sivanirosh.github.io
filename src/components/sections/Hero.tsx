@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Download, Mail } from 'lucide-react'
+import { ArrowRight, Linkedin, Mail } from 'lucide-react'
 import { Link } from 'react-scroll'
 import { profile } from '../../data/profile'
 import { NoiseOverlay } from '../ui/NoiseOverlay'
@@ -35,7 +35,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-slate-50 dark:bg-slate-950 scroll-mt-16"
+      className="relative min-h-screen pt-16 flex items-center overflow-hidden bg-slate-50 dark:bg-slate-950 scroll-mt-16"
     >
       <NoiseOverlay />
 
@@ -46,6 +46,17 @@ export function Hero() {
 
       <div className="relative max-w-5xl mx-auto px-6 py-24 w-full grid md:grid-cols-12 gap-12 items-center">
         <div className="md:col-span-7">
+          {profile.photoUrl && (
+            <div className="flex md:hidden justify-center mb-6">
+              <img
+                src={profile.photoUrl}
+                alt={displayName}
+                loading="eager"
+                decoding="async"
+                className="w-24 h-24 rounded-full object-cover ring-2 ring-teal-500/30 shadow-lg"
+              />
+            </div>
+          )}
           <motion.p
             {...FADE_UP}
             transition={{ duration: 0.35, delay: 0, ease: 'easeOut' }}
@@ -95,7 +106,7 @@ export function Hero() {
                 <p className="text-2xl font-medium font-serif text-slate-900 dark:text-slate-100">
                   {s.value}
                 </p>
-                <p className="text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-1">
+                <p className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-1">
                   {strip(s.label)}
                 </p>
               </motion.div>
@@ -110,7 +121,7 @@ export function Hero() {
             <Link
               to="contact"
               smooth
-              duration={500}
+              duration={200}
               offset={-60}
               className="
                 group relative inline-flex items-center gap-2
@@ -126,22 +137,6 @@ export function Hero() {
               <span className="relative">Get in touch</span>
               <ArrowRight className="relative w-4 h-4" />
             </Link>
-            <a
-              href="/cv.pdf"
-              download
-              className="
-                inline-flex items-center gap-2 text-sm font-medium
-                text-slate-700 dark:text-slate-200
-                border border-slate-300 dark:border-slate-700
-                px-5 py-2.5 rounded-lg
-                hover:bg-slate-100 dark:hover:bg-slate-800
-                hover:border-slate-400 dark:hover:border-slate-600
-                transition-colors
-              "
-            >
-              <Download className="w-4 h-4" />
-              Download CV
-            </a>
             {profile.email && !profile.email.startsWith('TODO:') && (
               <a
                 href={`mailto:${profile.email}`}
@@ -155,6 +150,23 @@ export function Hero() {
               >
                 <Mail className="w-4 h-4" />
                 Email
+              </a>
+            )}
+            {profile.linkedin && !profile.linkedin.startsWith('TODO:') && (
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  inline-flex items-center gap-2 text-sm font-medium
+                  text-slate-700 dark:text-slate-200
+                  px-5 py-2.5 rounded-lg
+                  hover:text-teal-700 dark:hover:text-teal-400
+                  transition-colors
+                "
+              >
+                <Linkedin className="w-4 h-4" />
+                LinkedIn
               </a>
             )}
           </motion.div>

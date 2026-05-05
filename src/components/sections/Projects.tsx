@@ -39,7 +39,7 @@ export function Projects() {
   )
 
   return (
-    <section id="projects" className="bg-white dark:bg-slate-900 py-24 scroll-mt-16">
+    <section id="projects" className="bg-white dark:bg-slate-900 py-24 scroll-mt-16 border-t border-slate-100 dark:border-slate-800">
       <div className="max-w-5xl mx-auto px-6">
         <RevealWrapper>
           <SectionHeader label="Projects" title="Selected work." />
@@ -71,7 +71,7 @@ export function Projects() {
           </p>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-6 auto-rows-[180px] gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-6 auto-rows-[minmax(200px,auto)] gap-4">
           {visible.map((p, i) => (
             <RevealWrapper
               key={p.id}
@@ -83,7 +83,7 @@ export function Projects() {
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div className="flex items-center gap-2">
                       {p.featured && <Badge className="bg-teal-50 dark:bg-teal-950 text-teal-700 dark:text-teal-400 border-teal-100 dark:border-teal-900">★ Featured</Badge>}
-                      <span className="text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                      <span className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
                         {p.category === 'ai-medical'
                           ? 'AI & Medical'
                           : p.category === 'engineering'

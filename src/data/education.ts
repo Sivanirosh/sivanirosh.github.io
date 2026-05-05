@@ -21,6 +21,7 @@ export const education: EducationEntry[] = [
     startYear: 2020,
     endYear: 2023,
     location: 'Fribourg, Switzerland',
+    award: 'Eurobot Finalists 2022',
     description:
       'Built a rotor test bench with sensor instrumentation and applied signal processing and machine learning to automate detection and diagnosis of rotordynamic faults.',
   },

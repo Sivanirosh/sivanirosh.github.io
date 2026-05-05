@@ -11,7 +11,7 @@ function strip(s: string): string {
 
 export function Certificates() {
   return (
-    <section id="certificates" className="bg-slate-50 dark:bg-slate-950 py-24 scroll-mt-16">
+    <section id="certificates" className="bg-slate-50 dark:bg-slate-950 py-24 scroll-mt-16 border-t border-slate-100 dark:border-slate-800">
       <div className="max-w-5xl mx-auto px-6">
         <RevealWrapper>
           <SectionHeader label="Certificates" title="Continuous learning." />
@@ -23,7 +23,7 @@ export function Certificates() {
           </p>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {certificates.map((c, i) => (
             <RevealWrapper key={c.id} delay={i * 0.08} className="h-full">
               <TiltCard className="h-full" maxTilt={4}>
@@ -44,7 +44,7 @@ export function Certificates() {
                       />
                     )}
                     <div className="min-w-0 flex-1">
-                      <p className="text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                      <p className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
                         {strip(c.platform)} · {c.year}
                       </p>
                       <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1 leading-snug">

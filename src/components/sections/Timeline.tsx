@@ -11,7 +11,7 @@ function strip(s: string): string {
 
 export function Timeline() {
   return (
-    <section id="timeline" className="bg-slate-50 dark:bg-slate-950 py-24 scroll-mt-16">
+    <section id="timeline" className="bg-slate-50 dark:bg-slate-950 py-24 scroll-mt-16 border-t border-slate-100 dark:border-slate-800">
       <div className="max-w-5xl mx-auto px-6">
         <RevealWrapper>
           <SectionHeader label="Education" title="Academic trajectory." />
@@ -28,7 +28,7 @@ export function Timeline() {
               <TimelineNode isLast={i === education.length - 1} />
               <Card>
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 mb-2">
-                  <p className="text-[11px] uppercase tracking-widest text-teal-600 dark:text-teal-400">
+                  <p className="text-xs uppercase tracking-widest text-teal-600 dark:text-teal-400">
                     {e.startYear} — {e.endYear === 'present' ? 'present' : e.endYear}
                   </p>
                   {e.award && <AwardBadge label={e.award} />}

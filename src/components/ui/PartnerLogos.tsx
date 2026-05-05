@@ -27,7 +27,7 @@ export function PartnerLogos({ partners, size = 80, className }: PartnerLogosPro
 
   return (
     <div className={clsx('flex items-center gap-1.5', className)}>
-      <span className="text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 mr-1">
+      <span className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mr-1">
         with
       </span>
       {partners.map((p) => {
@@ -45,7 +45,7 @@ export function PartnerLogos({ partners, size = 80, className }: PartnerLogosPro
             style={dim}
             className="
               inline-flex items-center justify-center rounded-full
-              text-[9px] font-semibold tracking-tight
+              text-xs font-semibold tracking-tight
               bg-slate-100 dark:bg-slate-800
               text-slate-500 dark:text-slate-400
               border border-slate-200 dark:border-slate-700

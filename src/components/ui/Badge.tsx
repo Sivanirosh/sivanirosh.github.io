@@ -5,7 +5,7 @@ export function Badge({ children, className }: { children: ReactNode; className?
   return (
     <span
       className={clsx(
-        'inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded-full',
+        'inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full',
         'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300',
         'border border-slate-200 dark:border-slate-700',
         className
@@ -20,7 +20,7 @@ export function AwardBadge({ label, className }: { label: string; className?: st
   return (
     <span
       className={clsx(
-        'relative inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full',
+        'relative inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full',
         'bg-teal-50 dark:bg-teal-950 text-teal-700 dark:text-teal-400',
         className
       )}
@@ -38,7 +38,7 @@ export function AwardBadge({ label, className }: { label: string; className?: st
           maskComposite: 'exclude',
         }}
       />
-      <span className="relative z-10 text-[9px]">★</span>
+      <span className="relative z-10 text-xs">★</span>
       <span className="relative z-10">{label}</span>
     </span>
   )

@@ -19,7 +19,7 @@ export function Contact() {
   const orcidOk = profile.orcid ? resolve(profile.orcid) : null
 
   return (
-    <section id="contact" className="bg-white dark:bg-slate-900 py-24 scroll-mt-16">
+    <section id="contact" className="bg-white dark:bg-slate-900 py-24 scroll-mt-16 border-t border-slate-100 dark:border-slate-800">
       <div className="max-w-5xl mx-auto px-6">
         <RevealWrapper>
           <SectionHeader
