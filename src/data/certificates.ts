@@ -34,5 +34,26 @@ export const certificates: Certificate[] = [
       logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Uni_GE_logo.svg/250px-Uni_GE_logo.svg.png?_=20150915192444',
     },
 
+    {
+      id: 'cert-ML-GoogleCloud',
+      title: 'Machine Learning on Google Cloud',
+      issuer: 'Google Cloud',
+      platform: 'Coursera',
+      year: 2019,
+      credentialUrl: 'https://coursera.org/share/0e09f6c83c19f018a84c6e77812a3794',
+      platformColor: '#0056D2',
+      logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2d/Google-favicon-2015.png',
+    },
+
+    {
+      id: 'cert-IBM-AI-Developer',
+      title: 'IBM AI Developer Professional Certificate',
+      issuer: 'IBM',
+      platform: 'Coursera',
+      year: 2019,
+      credentialUrl: 'https://coursera.org/share/9afa4e6785da9f609b9f432a52f9d6b0',
+      platformColor: '#0056D2',
+      logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/960px-IBM_logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20260503013247',
+    }
 
 ]
