@@ -2,6 +2,25 @@ import type { ExperienceEntry } from '../types'
 
 export const experience: ExperienceEntry[] = [
 
+
+  {
+    id: 'ARTORG',
+    role: 'Research Engineer - Master Thesis',
+    company: 'ARTORG Center for Biomedical Engineering Research',
+    logoUrl: 'https://www.artorg.unibe.ch/unibe/portal/fak_medizin/dept_weitere/ins_artorg/content/WEBuseonly_ARTORG_DD3601_eng.gif',
+    companyUrl: "https://www.artorg.unibe.ch/",
+    location: 'Bern, Switzerland',
+    startDate: 'Aug 2025',
+    endDate: 'Feb 2026',
+    achievements: [
+      'Awarded The Best Master Thesis Award for my work on Medical Vision-Language Models for Chest X-ray',
+      'Designed a physics-aware contrastive learning framework for Vision-Language Models in medical imaging, evaluated across nine international datasets.'
+    ],
+    tech: ['PyTorch', 'Weights & Biases', 'HPC / SLURM', 'Machine Learning', 'Medical Imaging', 'Vision-Language Models', 'Contrastive Learning'],
+  
+  },
+
+
   {
     id: 'HEIA',
     role: 'Research Associate',
@@ -19,6 +38,20 @@ export const experience: ExperienceEntry[] = [
     tech: ['Python', 'Machine Learning', 'Vibration Analysis', 'Digital Twins', 'Data Analysis', 'UI Programming'],
   },
 
+  {
+    id: 'Liebherr',
+    role: 'Engineering Intern',
+    company: 'Liebherr',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Liebherr-Logo.svg/960px-Liebherr-Logo.svg',
+    companyUrl: "https://www.liebherr.com/fr-ch/groupe/sites/bulle-profil-3902923",
+    location: 'Bulle, Switzerland',
+    startDate: 'Sept 2019',
+    endDate: 'Aug 2020',
+    achievements: [
+      '12-months intership across production, technical office and hydraulic and thermal R&D.' ],
+    tech: ['FEM', 'CAD', 'CAM', 'CNC', 'Hydraulic', 'Thermal', 'R&D', 'Prototyping'],
+  },
+  
   {
     id: 'ELIS',
     role: 'Customer Service Manager',
