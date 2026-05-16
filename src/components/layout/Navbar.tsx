@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { BookOpen } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-scroll'
 import { useActiveSection } from '../../hooks/useActiveSection'
@@ -89,6 +90,17 @@ export function Navbar() {
               </Link>
             </li>
           ))}
+          <li>
+            <a
+              href="https://sivanirosh.github.io/studyverse/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[13px] font-medium text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              Studyverse
+            </a>
+          </li>
         </ul>
 
         <div className="flex items-center gap-1">
@@ -140,6 +152,18 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                href="https://sivanirosh.github.io/studyverse/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 text-sm py-2 text-teal-600 dark:text-teal-400 font-medium"
+              >
+                <BookOpen className="w-4 h-4" />
+                Studyverse
+              </a>
+            </li>
           </ul>
         </div>
       )}

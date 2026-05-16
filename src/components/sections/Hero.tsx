@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Linkedin, Mail } from 'lucide-react'
+import { ArrowRight, BookOpen, Linkedin, Mail } from 'lucide-react'
 import { Link } from 'react-scroll'
 import { profile } from '../../data/profile'
 import { NoiseOverlay } from '../ui/NoiseOverlay'
@@ -137,6 +137,21 @@ export function Hero() {
               <span className="relative">Get in touch</span>
               <ArrowRight className="relative w-4 h-4" />
             </Link>
+            <a
+              href="https://sivanirosh.github.io/studyverse/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                inline-flex items-center gap-2 text-sm font-medium
+                text-slate-700 dark:text-slate-200
+                px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700
+                hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400
+                transition-colors
+              "
+            >
+              <BookOpen className="w-4 h-4" />
+              Studyverse
+            </a>
             {profile.email && !profile.email.startsWith('TODO:') && (
               <a
                 href={`mailto:${profile.email}`}
