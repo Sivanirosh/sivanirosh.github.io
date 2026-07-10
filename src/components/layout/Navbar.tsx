@@ -9,11 +9,11 @@ import { ThemeToggle } from '../ui/ThemeToggle'
 
 const BASE_NAV = [
   { id: 'about', label: 'About' },
-  { id: 'timeline', label: 'Education' },
+  { id: 'projects', label: 'Work' },
   { id: 'experience', label: 'Experience' },
   { id: 'publications', label: 'Publications' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'certificates', label: 'Certificates' },
+  { id: 'timeline', label: 'Education' },
+  { id: 'certificates', label: 'Credentials' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -57,7 +57,7 @@ export function Navbar() {
     >
       <nav
         aria-label="Primary"
-        className="mx-auto flex w-full max-w-5xl items-center gap-4 px-6"
+        className="mx-auto flex w-full max-w-6xl items-center gap-4 px-6"
       >
         <RouterLink
           to="/"
@@ -120,7 +120,7 @@ export function Navbar() {
                   : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
               )}
             >
-              Portfolio
+              All projects
             </RouterLink>
           </li>
         </ul>
@@ -163,7 +163,7 @@ export function Navbar() {
 
       {open && (
         <div className="absolute inset-x-0 top-16 max-h-[calc(100vh-4rem)] overflow-y-auto border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-lg dark:border-slate-800 dark:bg-slate-950/95 lg:hidden">
-          <ul className="mx-auto flex max-w-5xl flex-col gap-1 px-6 py-5">
+          <ul className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-5">
             {NAV.map((item) => (
               <li key={item.id}>
                 {isPortfolio ? (
@@ -209,7 +209,7 @@ export function Navbar() {
                     : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
                 )}
               >
-                Portfolio
+                All projects
               </RouterLink>
             </li>
           </ul>

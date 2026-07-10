@@ -9,10 +9,8 @@ export function Tag({ label, className }: Props) {
   return (
     <span
       className={clsx(
-        'inline-block text-xs px-2 py-0.5 rounded',
-        'bg-slate-100 dark:bg-slate-800',
-        'text-slate-500 dark:text-slate-400',
-        'border border-slate-200 dark:border-slate-700',
+        'inline-flex rounded-md bg-slate-100 px-2 py-1 font-mono text-xs leading-none text-slate-600',
+        'dark:bg-slate-800 dark:text-slate-300',
         className
       )}
     >

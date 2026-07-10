@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { lazy, Suspense, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/layout/Navbar'
 import { ScrollProgress } from './components/ui/ScrollProgress'
@@ -31,7 +31,7 @@ const PortfolioPage = lazy(() => import('./pages/PortfolioPage'))
 
 function SectionFallback() {
   return (
-    <div className="min-h-[60vh] px-6 py-24 max-w-5xl mx-auto space-y-6" aria-hidden>
+    <div className="mx-auto min-h-[60vh] max-w-6xl space-y-6 px-6 py-24" aria-hidden>
       <div className="h-8 w-48 rounded-lg bg-slate-200 dark:bg-slate-800 animate-pulse" />
       <div className="h-4 w-full rounded bg-slate-100 dark:bg-slate-800/60 animate-pulse" />
       <div className="h-4 w-5/6 rounded bg-slate-100 dark:bg-slate-800/60 animate-pulse" />
@@ -44,9 +44,40 @@ function SectionFallback() {
   )
 }
 
+function HashSectionScroller() {
+  const { hash } = useLocation()
+
+  useEffect(() => {
+    if (!hash) return
+
+    const id = decodeURIComponent(hash.slice(1))
+    let attempts = 0
+    let timeoutId: number | undefined
+
+    const scrollToSection = () => {
+      const section = document.getElementById(id)
+      if (section) {
+        section.scrollIntoView()
+        return
+      }
+
+      attempts += 1
+      if (attempts < 20) timeoutId = window.setTimeout(scrollToSection, 50)
+    }
+
+    scrollToSection()
+    return () => {
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId)
+    }
+  }, [hash])
+
+  return null
+}
+
 function MainPage() {
   return (
     <>
+      <HashSectionScroller />
       <ScrollProgress />
       <Navbar />
       <main>
@@ -54,10 +85,10 @@ function MainPage() {
         <ErrorBoundary>
           <Suspense fallback={<SectionFallback />}>
             <About />
-            <Timeline />
+            <Projects />
             <Experience />
             {publications.length > 0 && <Publications />}
-            <Projects />
+            <Timeline />
             <Certificates />
             <Contact />
           </Suspense>

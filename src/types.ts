@@ -11,6 +11,11 @@ export interface ProfileDistinction {
   linkLabel?: string
 }
 
+export interface ProfileFocusArea {
+  title: string
+  detail: string
+}
+
 export interface Profile {
   name: string
   title: string
@@ -23,6 +28,7 @@ export interface Profile {
   photoUrl?: string
   featuredLink?: ProfileLink
   distinction?: ProfileDistinction
+  focusAreas: ProfileFocusArea[]
   stats: { label: string; value: string }[]
   about: string[]
 }

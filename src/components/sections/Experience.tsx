@@ -1,119 +1,149 @@
-import { ExternalLink } from 'lucide-react'
+import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react'
+import { useState } from 'react'
 import { experience } from '../../data/experience'
-import { Card } from '../ui/Card'
 import { RevealWrapper } from '../ui/RevealWrapper'
 import { SectionHeader } from '../ui/SectionHeader'
 import { Tag } from '../ui/Tag'
 
-function strip(s: string): string {
-  return s.replace(/^TODO:\s*/, '')
+function strip(value: string): string {
+  return value.replace(/^TODO:\s*/, '')
 }
 
 function initials(name: string): string {
   return strip(name)
     .split(/\s+/)
     .slice(0, 2)
-    .map((w) => w[0])
+    .map((word) => word[0])
     .join('')
     .toUpperCase()
 }
 
 export function Experience() {
+  const [showEarlier, setShowEarlier] = useState(false)
+  const visibleExperience = showEarlier ? experience : experience.slice(0, 3)
+  const hasEarlierExperience = experience.length > 3
+
   return (
-    <section id="experience" className="bg-white dark:bg-slate-900 py-24 scroll-mt-16 border-t border-slate-100 dark:border-slate-800">
-      <div className="max-w-5xl mx-auto px-6">
+    <section
+      id="experience"
+      className="scroll-mt-16 border-t border-slate-100 bg-white py-24 dark:border-slate-800 dark:bg-slate-900"
+    >
+      <div className="mx-auto max-w-6xl px-6">
         <RevealWrapper>
-          <SectionHeader label="Experience" title="Where the work has happened." />
+          <SectionHeader
+            label="Experience"
+            title="Research, engineering, and delivery."
+            description="Recent roles first, with emphasis on technical ownership, measurable outcomes, and work carried from investigation through implementation."
+          />
         </RevealWrapper>
 
-        <div className="relative">
-          <div
-            aria-hidden
-            className="absolute left-5 top-8 bottom-8 w-px bg-teal-200 dark:bg-teal-900 hidden md:block"
-          />
+        <ol className="border-y border-slate-200 dark:border-slate-800">
+          {visibleExperience.map((job, index) => (
+            <RevealWrapper key={job.id} as="li" delay={index * 0.08}>
+              <article className="grid gap-5 border-b border-slate-200 py-9 last:border-b-0 md:grid-cols-12 md:gap-8 dark:border-slate-800">
+                <div className="md:col-span-3">
+                  <p className="font-mono text-xs font-medium uppercase tracking-wider text-teal-700 dark:text-teal-400">
+                    {job.startDate} — {job.endDate === 'present' ? 'present' : job.endDate}
+                  </p>
+                  {job.location && (
+                    <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                      {strip(job.location)}
+                    </p>
+                  )}
+                </div>
 
-          <ol className="space-y-6">
-            {experience.map((job, i) => (
-              <RevealWrapper key={job.id} as="li" delay={i * 0.1} className="relative md:pl-14">
-                <div
-                  aria-hidden
-                  className="absolute left-[14px] top-6 w-3.5 h-3.5 rounded-full border-2 border-teal-500 dark:border-teal-400 bg-white dark:bg-slate-900 hidden md:block"
-                />
-
-                <Card>
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center">
+                <div className="md:col-span-9">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
                       {job.logoUrl && !job.logoUrl.startsWith('TODO:') ? (
                         <img
                           src={job.logoUrl}
                           alt={`${strip(job.company)} logo`}
                           loading="lazy"
-                          className="w-full h-full object-contain p-1"
+                          className="h-full w-full object-contain p-1.5"
                         />
                       ) : (
-                        <span className="text-sm font-semibold text-teal-700 dark:text-teal-400">
+                        <span className="font-mono text-xs font-semibold text-teal-700 dark:text-teal-400">
                           {initials(job.company)}
                         </span>
                       )}
                     </div>
 
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-0.5">
-                        <div>
-                          <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100 leading-snug">
-                            {strip(job.role)}
-                          </h3>
-                          <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                            {job.companyUrl && !job.companyUrl.startsWith('TODO:') ? (
-                              <a
-                                href={job.companyUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
-                              >
-                                {strip(job.company)}
-                                <ExternalLink className="w-3 h-3" />
-                              </a>
-                            ) : (
-                              strip(job.company)
-                            )}
-                            {job.location ? ` · ${strip(job.location)}` : ''}
-                          </p>
-                        </div>
-                        <p className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 whitespace-nowrap pt-0.5">
-                          {job.startDate} — {job.endDate === 'present' ? 'present' : job.endDate}
-                        </p>
-                      </div>
-
-                      <ul className="mt-3 space-y-2">
-                        {job.achievements.map((a, idx) => (
-                          <li
-                            key={idx}
-                            className="relative pl-4 text-[15px] text-slate-700 dark:text-slate-300 leading-relaxed text-justify hyphens-auto"
+                    <div className="min-w-0">
+                      <h3 className="text-lg font-semibold tracking-tight text-slate-950 dark:text-white">
+                        {strip(job.role)}
+                      </h3>
+                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                        {job.companyUrl && !job.companyUrl.startsWith('TODO:') ? (
+                          <a
+                            href={job.companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 transition-colors hover:text-teal-700 dark:hover:text-teal-400"
                           >
-                            <span
-                              aria-hidden
-                              className="absolute left-0 top-[10px] w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400"
-                            />
-                            {strip(a)}
-                          </li>
-                        ))}
-                      </ul>
-
-                      {job.tech.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5 mt-4">
-                          {job.tech.map((t) => (
-                            <Tag key={t} label={strip(t)} />
-                          ))}
-                        </div>
-                      )}
+                            {strip(job.company)}
+                            <ExternalLink aria-hidden className="h-3 w-3" />
+                          </a>
+                        ) : (
+                          strip(job.company)
+                        )}
+                      </p>
                     </div>
                   </div>
-                </Card>
-              </RevealWrapper>
-            ))}
-          </ol>
-        </div>
+
+                  <ul className="mt-6 max-w-3xl space-y-3">
+                    {job.achievements.map((achievement) => (
+                      <li
+                        key={achievement}
+                        className="relative pl-5 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300"
+                      >
+                        <span
+                          aria-hidden
+                          className="absolute left-0 top-2.5 h-1.5 w-1.5 rounded-full bg-teal-600 dark:bg-teal-400"
+                        />
+                        {strip(achievement)}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {job.tech.length > 0 && (
+                    <div className="mt-6 flex flex-wrap gap-1.5">
+                      {job.tech.slice(0, 7).map((technology) => (
+                        <Tag key={technology} label={strip(technology)} />
+                      ))}
+                      {job.tech.length > 7 && (
+                        <span className="self-center font-mono text-xs text-slate-400 dark:text-slate-500">
+                          +{job.tech.length - 7}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </article>
+            </RevealWrapper>
+          ))}
+        </ol>
+
+        {hasEarlierExperience && (
+          <RevealWrapper>
+            <button
+              type="button"
+              onClick={() => setShowEarlier((value) => !value)}
+              aria-expanded={showEarlier}
+              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-teal-700 dark:text-slate-300 dark:hover:text-teal-400"
+            >
+              {showEarlier ? (
+                <>
+                  Show recent experience only <ChevronUp aria-hidden className="h-4 w-4" />
+                </>
+              ) : (
+                <>
+                  Show earlier experience <ChevronDown aria-hidden className="h-4 w-4" />
+                </>
+              )}
+            </button>
+          </RevealWrapper>
+        )}
       </div>
     </section>
   )

@@ -2,9 +2,9 @@ import type { Profile } from '../types'
 
 export const profile: Profile = {
   name: 'Nirosh Sivanesan',
-  title: 'Mechanical Engineer · AI Researcher',
+  title: 'Mechanical Engineer · AI Researcher · Full-stack Builder',
   tagline:
-    'I build rigorous, practical systems across mechanical engineering, medical AI, and software.',
+    'I design and ship robust systems — from medical vision–language models and industrial digital twins to local-first developer tools.',
 
   email: 'sivanirosh@gmail.com',
   github: 'https://github.com/sivanirosh',
@@ -32,10 +32,24 @@ export const profile: Profile = {
     linkLabel: 'Watch Best Thesis Award 2026 presentation',
   },
 
+  focusAreas: [
+    {
+      title: 'AI systems',
+      detail: 'Medical imaging, vision–language models, contrastive learning',
+    },
+    {
+      title: 'Full-stack products',
+      detail: 'React, TypeScript, Python, Rust, local-first architecture',
+    },
+    {
+      title: 'Engineering R&D',
+      detail: 'Digital twins, sensing, predictive maintenance, industrial ML',
+    },
+  ],
+
   about: [
-    'I started in mechanical engineering at HEIA-FR, where I built rotor test benches, instrumented them with sensors, and wrote signal processing pipelines to detect and diagnose rotordynamic faults. That hands-on experience taught me that real-world data is never clean and that modelling physical systems requires understanding what to measure, why it matters, and where the uncertainty lives.',
-    'My MSc in Artificial Intelligence in Medicine at the University of Bern pushed me deeper into the same problem — messy, scarce data — but in a clinical setting. I developed a metadata-guided contrastive learning method for chest X-ray vision–language models that was tested across nine international datasets and received the Best Thesis Award. The approach is deliberately simple: instead of stacking more architecture, we asked what structured information the model was ignoring and found a way to feed it into the learning objective.',
-    'Since then I have been building software that spans the full stack: a digital-twin methodology for predictive maintenance validated on real factory equipment, a full-stack dossier management workspace for building engineers, a local-first coding practice app, a workflow daemon in Rust for bounded agentic coding, and a spaced repetition app rethought for the local-AI era. Each project is a different answer to the same curiosity: what does it take to make something that actually works outside the lab?',
-    'I am looking for roles and collaborations where I can build things that bridge engineering, medical AI, and developer tools — preferably at the prototype-to-product edge where the hard problems live.',
+    'I am a mechanical engineer and AI researcher who works across the complete path from physical systems and data to tested software. I care about sound modelling, clear interfaces, and solutions that remain useful outside a controlled demonstration.',
+    'At ARTORG, I developed a metadata-guided contrastive learning method for chest X-ray vision–language models and evaluated it across nine international datasets. The work received the Best Thesis Award from the University of Bern MSc in Artificial Intelligence in Medicine.',
+    'Alongside research, I build full-stack and local-first products for engineering, learning, and developer workflows. These projects combine domain modelling, backend systems, data pipelines, accessible interfaces, and deployment — the full product surface rather than isolated prototypes.',
   ],
 }

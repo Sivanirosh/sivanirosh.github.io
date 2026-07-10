@@ -25,7 +25,7 @@ export default {
         danger: '#E24B4A',
       },
       fontSize: {
-        'hero': ['clamp(2.25rem, 5vw + 1rem, 3.5rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'hero': ['clamp(2.75rem, 6vw, 4.75rem)', { lineHeight: '0.98', letterSpacing: '-0.045em' }],
       },
       letterSpacing: {
         widest: '0.2em',

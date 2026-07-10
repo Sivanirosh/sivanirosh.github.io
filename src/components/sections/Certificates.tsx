@@ -1,75 +1,93 @@
-import { ExternalLink } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { certificates } from '../../data/certificates'
-import { Card } from '../ui/Card'
 import { RevealWrapper } from '../ui/RevealWrapper'
 import { SectionHeader } from '../ui/SectionHeader'
-import { TiltCard } from '../ui/TiltCard'
 
-function strip(s: string): string {
-  return s.replace(/^TODO:\s*/, '')
+function strip(value: string): string {
+  return value.replace(/^TODO:\s*/, '')
 }
 
 export function Certificates() {
+  const sortedCertificates = [...certificates].sort((a, b) => b.year - a.year)
+
   return (
-    <section id="certificates" className="bg-slate-50 dark:bg-slate-950 py-24 scroll-mt-16 border-t border-slate-100 dark:border-slate-800">
-      <div className="max-w-5xl mx-auto px-6">
+    <section
+      id="certificates"
+      className="scroll-mt-16 border-t border-slate-100 bg-white py-24 dark:border-slate-800 dark:bg-slate-900"
+    >
+      <div className="mx-auto max-w-6xl px-6">
         <RevealWrapper>
-          <SectionHeader label="Certificates" title="Continuous learning." />
+          <SectionHeader
+            label="Credentials"
+            title="Continuous, applied learning."
+            description="Selected certificates that complement formal education and project-based practice."
+          />
         </RevealWrapper>
 
-        {certificates.length === 0 && (
-          <p className="text-sm text-slate-400 dark:text-slate-500">
-            No certificates to show yet.
-          </p>
-        )}
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {certificates.map((c, i) => (
-            <RevealWrapper key={c.id} delay={i * 0.08} className="h-full">
-              <TiltCard className="h-full" maxTilt={4}>
-                <Card className="h-full p-4">
-                  <div className="flex items-start gap-3">
-                    {c.logoUrl && !c.logoUrl.startsWith('TODO:') ? (
+        {sortedCertificates.length === 0 ? (
+          <p className="text-sm text-slate-400 dark:text-slate-500">No certificates to show yet.</p>
+        ) : (
+          <div className="grid gap-x-10 md:grid-cols-2">
+            {sortedCertificates.map((certificate, index) => {
+              const content = (
+                <>
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
+                    {certificate.logoUrl && !certificate.logoUrl.startsWith('TODO:') ? (
                       <img
-                        src={c.logoUrl}
-                        alt={`${strip(c.platform)} logo`}
+                        src={certificate.logoUrl}
+                        alt={`${strip(certificate.issuer)} logo`}
                         loading="lazy"
-                        className="flex-shrink-0 w-8 h-8 rounded object-contain bg-white border border-slate-200 dark:border-slate-700 p-0.5"
+                        className="h-full w-full object-contain p-1.5"
                       />
                     ) : (
                       <span
                         aria-hidden
-                        className="flex-shrink-0 inline-block w-8 h-8 rounded"
-                        style={{ backgroundColor: c.platformColor }}
+                        className="h-4 w-4 rounded-full"
+                        style={{ backgroundColor: certificate.platformColor }}
                       />
                     )}
-                    <div className="min-w-0 flex-1">
-                      <p className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                        {strip(c.platform)} · {c.year}
-                      </p>
-                      <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1 leading-snug">
-                        {strip(c.title)}
-                      </h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                        {strip(c.issuer)}
-                      </p>
-                      {c.credentialUrl && !c.credentialUrl.startsWith('TODO:') && (
-                        <a
-                          href={c.credentialUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 mt-2 text-xs text-teal-700 dark:text-teal-400 hover:underline"
-                        >
-                          View credential <ExternalLink className="w-3 h-3" />
-                        </a>
-                      )}
-                    </div>
                   </div>
-                </Card>
-              </TiltCard>
-            </RevealWrapper>
-          ))}
-        </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-mono text-xs text-slate-400 dark:text-slate-500">
+                      {certificate.year} · {strip(certificate.platform)}
+                    </p>
+                    <h3 className="mt-1 text-sm font-semibold leading-snug text-slate-950 dark:text-white">
+                      {strip(certificate.title)}
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                      {strip(certificate.issuer)}
+                    </p>
+                  </div>
+                  {certificate.credentialUrl && !certificate.credentialUrl.startsWith('TODO:') && (
+                    <ArrowUpRight
+                      aria-hidden
+                      className="h-4 w-4 shrink-0 text-slate-400 transition-colors group-hover:text-teal-700 dark:group-hover:text-teal-400"
+                    />
+                  )}
+                </>
+              )
+
+              return (
+                <RevealWrapper key={certificate.id} delay={index * 0.06}>
+                  {certificate.credentialUrl && !certificate.credentialUrl.startsWith('TODO:') ? (
+                    <a
+                      href={certificate.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-start gap-4 border-t border-slate-200 py-6 transition-colors hover:border-teal-600 dark:border-slate-800 dark:hover:border-teal-400"
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <article className="flex items-start gap-4 border-t border-slate-200 py-6 dark:border-slate-800">
+                      {content}
+                    </article>
+                  )}
+                </RevealWrapper>
+              )
+            })}
+          </div>
+        )}
       </div>
     </section>
   )
