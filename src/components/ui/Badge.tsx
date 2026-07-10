@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { Award } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 export function Badge({ children, className }: { children: ReactNode; className?: string }) {
@@ -20,26 +21,13 @@ export function AwardBadge({ label, className }: { label: string; className?: st
   return (
     <span
       className={clsx(
-        'relative inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full',
-        'bg-teal-50 dark:bg-teal-950 text-teal-700 dark:text-teal-400',
+        'inline-flex items-center gap-1.5 border-l-2 border-teal-600/70 dark:border-teal-400/70 pl-2',
+        'text-xs font-medium text-slate-600 dark:text-slate-300',
         className
       )}
-      style={{
-        backgroundClip: 'padding-box',
-      }}
     >
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-full p-px bg-gradient-teal opacity-60"
-        style={{
-          WebkitMask:
-            'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude',
-        }}
-      />
-      <span className="relative z-10 text-xs">★</span>
-      <span className="relative z-10">{label}</span>
+      <Award aria-hidden className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+      {label}
     </span>
   )
 }

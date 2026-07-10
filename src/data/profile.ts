@@ -2,10 +2,9 @@ import type { Profile } from '../types'
 
 export const profile: Profile = {
   name: 'Nirosh Sivanesan',
-  title: 'Engineer and AI Researcher',
-  tagline: 'Mechanical engineer, AI researcher, software builder — I turn complex problems into working solutions across physical systems, medical imaging, and developer tools.',
-
-  heroAccentWord: 'working',
+  title: 'Mechanical Engineer · AI Researcher',
+  tagline:
+    'I build rigorous, practical systems across mechanical engineering, medical AI, and software.',
 
   email: 'sivanirosh@gmail.com',
   github: 'https://github.com/sivanirosh',
@@ -25,7 +24,13 @@ export const profile: Profile = {
     // { label: 'Projects', value: '3' },
   ],
 
-  awards: ['Best Thesis Award 2026', 'Eurobot Finalists 2022'],
+  distinction: {
+    label: 'Academic distinction',
+    title: 'Best Thesis Award 2026',
+    detail: 'MSc Artificial Intelligence in Medicine · University of Bern',
+    url: 'https://www.youtube.com/watch?v=pPtPEK66k9M',
+    linkLabel: 'Watch Best Thesis Award 2026 presentation',
+  },
 
   about: [
     'I started in mechanical engineering at HEIA-FR, where I built rotor test benches, instrumented them with sensors, and wrote signal processing pipelines to detect and diagnose rotordynamic faults. That hands-on experience taught me that real-world data is never clean and that modelling physical systems requires understanding what to measure, why it matters, and where the uncertainty lives.',

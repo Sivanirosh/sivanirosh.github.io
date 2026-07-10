@@ -3,11 +3,18 @@ export interface ProfileLink {
   url: string
 }
 
+export interface ProfileDistinction {
+  label: string
+  title: string
+  detail: string
+  url?: string
+  linkLabel?: string
+}
+
 export interface Profile {
   name: string
   title: string
   tagline: string
-  heroAccentWord: string
   email: string
   github: string
   linkedin?: string
@@ -15,8 +22,8 @@ export interface Profile {
   location?: string
   photoUrl?: string
   featuredLink?: ProfileLink
+  distinction?: ProfileDistinction
   stats: { label: string; value: string }[]
-  awards: string[]
   about: string[]
 }
 

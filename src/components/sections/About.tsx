@@ -24,30 +24,22 @@ export function About() {
           </RevealWrapper>
 
           <RevealWrapper delay={0.1}>
-            <div className="space-y-5 text-sm">
+            <dl className="space-y-6 border-l border-slate-200 dark:border-slate-800 pl-5 text-sm">
               {profile.location && (
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                  <dt className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
                     Based in
-                  </p>
-                  <p className="mt-1 text-slate-900 dark:text-slate-100">{strip(profile.location)}</p>
+                  </dt>
+                  <dd className="mt-1 text-slate-900 dark:text-slate-100">{strip(profile.location)}</dd>
                 </div>
               )}
               <div>
-                <p className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                <dt className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
                   Focus
-                </p>
-                <p className="mt-1 text-slate-900 dark:text-slate-100">{strip(profile.title)}</p>
+                </dt>
+                <dd className="mt-1 text-slate-900 dark:text-slate-100">{strip(profile.title)}</dd>
               </div>
-              {profile.awards[0] && (
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                    Recognition
-                  </p>
-                  <p className="mt-1 text-slate-900 dark:text-slate-100">{profile.awards[0]}</p>
-                </div>
-              )}
-            </div>
+            </dl>
           </RevealWrapper>
         </div>
       </div>

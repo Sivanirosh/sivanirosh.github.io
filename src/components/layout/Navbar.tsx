@@ -1,12 +1,10 @@
 import clsx from 'clsx'
-import { BookOpen, ArrowUpRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { Link } from 'react-scroll'
-import { useActiveSection } from '../../hooks/useActiveSection'
 import { profile } from '../../data/profile'
 import { publications } from '../../data/publications'
-import { AwardBadge } from '../ui/Badge'
+import { useActiveSection } from '../../hooks/useActiveSection'
 import { ThemeToggle } from '../ui/ThemeToggle'
 
 const BASE_NAV = [
@@ -44,7 +42,6 @@ export function Navbar() {
     return () => document.removeEventListener('keydown', onKey)
   }, [])
 
-  // Close mobile menu on route change
   useEffect(() => {
     setOpen(false)
   }, [pathname])
@@ -52,50 +49,45 @@ export function Navbar() {
   return (
     <header
       className={clsx(
-        'fixed top-0 left-0 right-0 z-40 h-16 flex items-center',
-        'bg-white/60 dark:bg-slate-950/60 backdrop-blur-xl backdrop-saturate-150',
-        'border-b border-slate-200/60 dark:border-slate-800/60',
-        'transition-shadow duration-200',
-        scrolled && 'shadow-sm'
+        'fixed top-0 left-0 right-0 z-40 flex h-16 items-center',
+        'border-b border-slate-200/70 bg-white/85 backdrop-blur-lg dark:border-slate-800/70 dark:bg-slate-950/85',
+        'transition-[box-shadow,background-color] duration-200',
+        scrolled && 'shadow-soft'
       )}
     >
-      <nav className="w-full max-w-5xl mx-auto px-6 flex items-center justify-between gap-4">
-        {/* Logo / home link */}
+      <nav
+        aria-label="Primary"
+        className="mx-auto flex w-full max-w-5xl items-center gap-4 px-6"
+      >
         <RouterLink
           to="/"
-          className="flex items-center gap-3 group"
-          aria-label="Back to top"
+          className="group flex shrink-0 items-center gap-2.5"
+          aria-label="Home"
         >
-          <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-teal text-white text-xs font-medium">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-slate-900 font-mono text-xs font-semibold text-white dark:bg-slate-100 dark:text-slate-950">
             {profile.name
               .split(' ')
-              .map((p) => p[0])
+              .map((part) => part[0])
               .slice(0, 2)
               .join('')
-              .toUpperCase() || 'YN'}
+              .toUpperCase() || 'NS'}
           </span>
-          <span className="hidden sm:inline text-sm font-medium text-slate-900 dark:text-slate-100 group-hover:text-teal-700 dark:group-hover:text-teal-400 transition-colors">
+          <span className="hidden whitespace-nowrap text-sm font-semibold tracking-tight text-slate-900 transition-colors group-hover:text-teal-700 dark:text-slate-100 dark:group-hover:text-teal-400 sm:inline">
             {profile.name.replace(/^TODO:\s*/, '')}
           </span>
-          {profile.awards[0] && (
-            <span className="hidden md:inline">
-              <AwardBadge label={profile.awards[0]} />
-            </span>
-          )}
         </RouterLink>
 
-        {/* Desktop nav */}
-        <ul className="hidden lg:flex items-center gap-5">
+        <ul className="hidden min-w-0 flex-1 items-center justify-center gap-4 lg:flex xl:gap-5">
           {NAV.map((item) => (
             <li key={item.id}>
               {isPortfolio ? (
                 <RouterLink
                   to={`/#${item.id}`}
                   className={clsx(
-                    'text-[13px] transition-colors',
+                    'whitespace-nowrap text-[13px] transition-colors',
                     active === item.id
-                      ? 'text-teal-700 dark:text-teal-400 font-medium'
-                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
+                      ? 'font-medium text-teal-700 dark:text-teal-400'
+                      : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
                   )}
                 >
                   {item.label}
@@ -107,10 +99,10 @@ export function Navbar() {
                   duration={200}
                   offset={-60}
                   className={clsx(
-                    'text-[13px] transition-colors cursor-pointer',
+                    'cursor-pointer whitespace-nowrap text-[13px] transition-colors',
                     active === item.id
-                      ? 'text-teal-700 dark:text-teal-400 font-medium'
-                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
+                      ? 'font-medium text-teal-700 dark:text-teal-400'
+                      : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
                   )}
                 >
                   {item.label}
@@ -118,50 +110,32 @@ export function Navbar() {
               )}
             </li>
           ))}
-
-          {/* Portfolio link */}
           <li>
             <RouterLink
               to="/projects"
               className={clsx(
-                'inline-flex items-center gap-1 text-[13px] transition-colors',
+                'whitespace-nowrap text-[13px] transition-colors',
                 isPortfolio
-                  ? 'text-teal-700 dark:text-teal-400 font-medium'
-                  : 'text-slate-500 dark:text-slate-400 hover:text-teal-700 dark:hover:text-teal-400'
+                  ? 'font-medium text-teal-700 dark:text-teal-400'
+                  : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
               )}
             >
               Portfolio
-              <ArrowUpRight className="w-3 h-3" />
             </RouterLink>
           </li>
-
-          {profile.featuredLink && (
-            <li>
-              <a
-                href={profile.featuredLink.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors"
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                {profile.featuredLink.label}
-              </a>
-            </li>
-          )}
         </ul>
 
-        {/* Right: theme toggle + hamburger */}
-        <div className="flex items-center gap-1">
+        <div className="ml-auto flex shrink-0 items-center gap-1">
           <ThemeToggle />
           <button
             type="button"
-            onClick={() => setOpen((o) => !o)}
+            onClick={() => setOpen((value) => !value)}
             aria-label="Toggle navigation menu"
             aria-expanded={open}
-            className="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 lg:hidden"
           >
             <svg
-              className="w-4 h-4"
+              className="h-4 w-4"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -187,10 +161,9 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="lg:hidden absolute top-16 inset-x-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-sm max-h-[calc(100vh-4rem)] overflow-y-auto">
-          <ul className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-3">
+        <div className="absolute inset-x-0 top-16 max-h-[calc(100vh-4rem)] overflow-y-auto border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-lg dark:border-slate-800 dark:bg-slate-950/95 lg:hidden">
+          <ul className="mx-auto flex max-w-5xl flex-col gap-1 px-6 py-5">
             {NAV.map((item) => (
               <li key={item.id}>
                 {isPortfolio ? (
@@ -198,10 +171,10 @@ export function Navbar() {
                     to={`/#${item.id}`}
                     onClick={() => setOpen(false)}
                     className={clsx(
-                      'block text-sm py-2',
+                      'block rounded-md px-3 py-2 text-sm transition-colors',
                       active === item.id
-                        ? 'text-teal-700 dark:text-teal-400 font-medium'
-                        : 'text-slate-700 dark:text-slate-300'
+                        ? 'bg-teal-50 font-medium text-teal-700 dark:bg-teal-950 dark:text-teal-400'
+                        : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
                     )}
                   >
                     {item.label}
@@ -214,10 +187,10 @@ export function Navbar() {
                     offset={-60}
                     onClick={() => setOpen(false)}
                     className={clsx(
-                      'block text-sm py-2 cursor-pointer',
+                      'block cursor-pointer rounded-md px-3 py-2 text-sm transition-colors',
                       active === item.id
-                        ? 'text-teal-700 dark:text-teal-400 font-medium'
-                        : 'text-slate-700 dark:text-slate-300'
+                        ? 'bg-teal-50 font-medium text-teal-700 dark:bg-teal-950 dark:text-teal-400'
+                        : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
                     )}
                   >
                     {item.label}
@@ -225,37 +198,20 @@ export function Navbar() {
                 )}
               </li>
             ))}
-
-            {/* Portfolio (mobile) */}
             <li>
               <RouterLink
                 to="/projects"
                 onClick={() => setOpen(false)}
                 className={clsx(
-                  'block text-sm py-2',
+                  'block rounded-md px-3 py-2 text-sm transition-colors',
                   isPortfolio
-                    ? 'text-teal-700 dark:text-teal-400 font-medium'
-                    : 'text-slate-700 dark:text-slate-300'
+                    ? 'bg-teal-50 font-medium text-teal-700 dark:bg-teal-950 dark:text-teal-400'
+                    : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800'
                 )}
               >
                 Portfolio
               </RouterLink>
             </li>
-
-            {profile.featuredLink && (
-              <li>
-                <a
-                  href={profile.featuredLink.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 text-sm py-2 text-teal-700 dark:text-teal-400 font-medium"
-                >
-                  <BookOpen className="w-4 h-4" />
-                  {profile.featuredLink.label}
-                </a>
-              </li>
-            )}
           </ul>
         </div>
       )}
