@@ -80,18 +80,10 @@ export function Navbar() {
       >
         <RouterLink
           to="/"
-          className="group flex shrink-0 items-center gap-2.5"
+          className="group shrink-0"
           aria-label="Home"
         >
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-slate-900 font-mono text-xs font-semibold text-white dark:bg-slate-100 dark:text-slate-950">
-            {profile.name
-              .split(' ')
-              .map((part) => part[0])
-              .slice(0, 2)
-              .join('')
-              .toUpperCase() || 'NS'}
-          </span>
-          <span className="hidden whitespace-nowrap text-sm font-semibold tracking-tight text-slate-900 transition-colors group-hover:text-teal-700 dark:text-slate-100 dark:group-hover:text-teal-400 sm:inline">
+          <span className="whitespace-nowrap text-sm font-semibold tracking-tight text-slate-900 transition-colors group-hover:text-teal-700 dark:text-slate-100 dark:group-hover:text-teal-400">
             {profile.name.replace(/^TODO:\s*/, '')}
           </span>
         </RouterLink>
