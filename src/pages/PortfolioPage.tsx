@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useMemo, useState } from 'react'
 import { Footer } from '../components/layout/Footer'
 import { Navbar } from '../components/layout/Navbar'
@@ -36,6 +37,7 @@ function visibleProjects(category: CategoryFilter, status: StatusFilter): Projec
 }
 
 export default function PortfolioPage() {
+  const reduceMotion = useReducedMotion() ?? false
   const [category, setCategory] = useState<CategoryFilter>('all')
   const [status, setStatus] = useState<StatusFilter>('all')
   const [selected, setSelected] = useState<Project | null>(null)
@@ -102,12 +104,24 @@ export default function PortfolioPage() {
                       onClick={() => setCategory(item.id)}
                       aria-pressed={category === item.id}
                       className={clsx(
-                        'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                        'relative isolate overflow-hidden rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                         category === item.id
-                          ? 'bg-slate-950 text-white dark:bg-white dark:text-slate-950'
+                          ? 'text-white dark:text-slate-950'
                           : 'bg-white text-slate-600 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800'
                       )}
                     >
+                      {category === item.id && (
+                        <motion.span
+                          layoutId="active-category-filter"
+                          aria-hidden
+                          transition={
+                            reduceMotion
+                              ? { duration: 0 }
+                              : { type: 'spring', stiffness: 500, damping: 38 }
+                          }
+                          className="absolute inset-0 -z-10 rounded-lg bg-slate-950 dark:bg-white"
+                        />
+                      )}
                       {item.label}
                     </button>
                   ))}
@@ -122,12 +136,24 @@ export default function PortfolioPage() {
                     onClick={() => setStatus(item.id)}
                     aria-pressed={status === item.id}
                     className={clsx(
-                      'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                      'relative isolate overflow-hidden rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                       status === item.id
-                        ? 'bg-teal-100 text-teal-900 dark:bg-teal-900 dark:text-teal-100'
+                        ? 'text-teal-900 dark:text-teal-100'
                         : 'text-slate-500 hover:bg-white hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-white'
                     )}
                   >
+                    {status === item.id && (
+                      <motion.span
+                        layoutId="active-status-filter"
+                        aria-hidden
+                        transition={
+                          reduceMotion
+                            ? { duration: 0 }
+                            : { type: 'spring', stiffness: 500, damping: 38 }
+                        }
+                        className="absolute inset-0 -z-10 rounded-lg bg-teal-100 dark:bg-teal-900"
+                      />
+                    )}
                     {item.label}
                   </button>
                 ))}
@@ -135,23 +161,45 @@ export default function PortfolioPage() {
             </div>
           </RevealWrapper>
 
-          <p className="mt-6 font-mono text-xs text-slate-400 dark:text-slate-500">
+          <p
+            aria-live="polite"
+            className="mt-6 font-mono text-xs text-slate-400 dark:text-slate-500"
+          >
             {visible.length} {visible.length === 1 ? 'project' : 'projects'}
           </p>
 
-          {visible.length === 0 ? (
-            <p className="py-20 text-center text-sm text-slate-500 dark:text-slate-400">
-              No projects match these filters.
-            </p>
-          ) : (
-            <div className="mt-6 grid items-stretch gap-5 lg:grid-cols-2">
-              {visible.map((project, index) => (
-                <RevealWrapper key={project.id} delay={index * 0.05} className="h-full">
-                  <ProjectCard project={project} index={index} onOpen={setSelected} />
-                </RevealWrapper>
-              ))}
-            </div>
-          )}
+          <motion.div layout={!reduceMotion} className="mt-6 grid items-stretch gap-5 lg:grid-cols-2">
+            <AnimatePresence initial={false} mode="popLayout">
+              {visible.length === 0 ? (
+                <motion.p
+                  key="empty-projects"
+                  initial={reduceMotion ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={reduceMotion ? undefined : { opacity: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.18 }}
+                  className="col-span-full py-20 text-center text-sm text-slate-500 dark:text-slate-400"
+                >
+                  No projects match these filters.
+                </motion.p>
+              ) : (
+                visible.map((project, index) => (
+                  <motion.div
+                    layout={!reduceMotion}
+                    key={project.id}
+                    initial={reduceMotion ? false : { opacity: 0, scale: 0.985 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={reduceMotion ? undefined : { opacity: 0, scale: 0.985 }}
+                    transition={{ duration: reduceMotion ? 0 : 0.18, ease: 'easeOut' }}
+                    className="h-full"
+                  >
+                    <RevealWrapper delay={index * 0.05} className="h-full">
+                      <ProjectCard project={project} index={index} onOpen={setSelected} />
+                    </RevealWrapper>
+                  </motion.div>
+                ))
+              )}
+            </AnimatePresence>
+          </motion.div>
         </section>
       </main>
 

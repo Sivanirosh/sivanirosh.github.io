@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, ExternalLink, Github } from 'lucide-react'
 import type { Project } from '../../types'
 import { formatProjectYears, projectCategoryLabel } from './projectMeta'
@@ -43,6 +44,8 @@ function ProjectActions({ project }: { project: Project }) {
 }
 
 export function ProjectCard({ project, index, variant = 'catalog', onOpen }: Props) {
+  const reduceMotion = useReducedMotion() ?? false
+
   if (variant === 'showcase') {
     return (
       <article className="grid gap-6 border-t border-slate-200 py-10 md:grid-cols-12 md:gap-8 dark:border-slate-800">
@@ -120,11 +123,13 @@ export function ProjectCard({ project, index, variant = 'catalog', onOpen }: Pro
   }
 
   return (
-    <article
+    <motion.article
+      whileHover={reduceMotion ? undefined : { y: -3 }}
+      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
       className={clsx(
         'group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-soft',
-        'transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5',
-        'dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/20'
+        'transition-[box-shadow,border-color] duration-200 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5 focus-within:border-teal-300',
+        'dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/20 dark:focus-within:border-teal-700'
       )}
     >
       <div className="flex items-start justify-between gap-4">
@@ -182,6 +187,6 @@ export function ProjectCard({ project, index, variant = 'catalog', onOpen }: Pro
         </button>
         <ProjectActions project={project} />
       </div>
-    </article>
+    </motion.article>
   )
 }
