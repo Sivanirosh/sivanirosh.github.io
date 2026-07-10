@@ -1,3 +1,8 @@
+export interface ProfileLink {
+  label: string
+  url: string
+}
+
 export interface Profile {
   name: string
   title: string
@@ -9,6 +14,7 @@ export interface Profile {
   orcid?: string
   location?: string
   photoUrl?: string
+  featuredLink?: ProfileLink
   stats: { label: string; value: string }[]
   awards: string[]
   about: string[]
@@ -68,6 +74,14 @@ export interface Project {
   size?: 'regular' | 'wide'
   category: 'ai-medical' | 'engineering' | 'software'
   partners?: Partner[]
+  imageUrl?: string
+  videos?: { label: string; url: string }[]
+  startYear: number
+  endYear: number | 'ongoing'
+  role?: string
+  longDescription?: string
+  highlights?: string[]
+  hidden?: boolean
 }
 
 export interface Certificate {

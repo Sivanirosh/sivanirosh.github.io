@@ -1,13 +1,15 @@
 import clsx from 'clsx'
-import { BookOpen } from 'lucide-react'
+import { BookOpen, ArrowUpRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { Link } from 'react-scroll'
 import { useActiveSection } from '../../hooks/useActiveSection'
 import { profile } from '../../data/profile'
+import { publications } from '../../data/publications'
 import { AwardBadge } from '../ui/Badge'
 import { ThemeToggle } from '../ui/ThemeToggle'
 
-const NAV = [
+const BASE_NAV = [
   { id: 'about', label: 'About' },
   { id: 'timeline', label: 'Education' },
   { id: 'experience', label: 'Experience' },
@@ -17,8 +19,13 @@ const NAV = [
   { id: 'contact', label: 'Contact' },
 ]
 
+const NAV = BASE_NAV.filter((item) => item.id !== 'publications' || publications.length > 0)
+const NAV_IDS = NAV.map((item) => item.id)
+
 export function Navbar() {
-  const active = useActiveSection(NAV.map((n) => n.id))
+  const { pathname } = useLocation()
+  const isPortfolio = pathname === '/projects'
+  const active = useActiveSection(NAV_IDS)
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -30,10 +37,17 @@ export function Navbar() {
   }, [])
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [])
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
 
   return (
     <header
@@ -46,11 +60,10 @@ export function Navbar() {
       )}
     >
       <nav className="w-full max-w-5xl mx-auto px-6 flex items-center justify-between gap-4">
-        <Link
-          to="hero"
-          smooth
-          duration={200}
-          className="flex items-center gap-3 cursor-pointer group"
+        {/* Logo / home link */}
+        <RouterLink
+          to="/"
+          className="flex items-center gap-3 group"
           aria-label="Back to top"
         >
           <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-teal text-white text-xs font-medium">
@@ -69,40 +82,75 @@ export function Navbar() {
               <AwardBadge label={profile.awards[0]} />
             </span>
           )}
-        </Link>
+        </RouterLink>
 
+        {/* Desktop nav */}
         <ul className="hidden lg:flex items-center gap-5">
           {NAV.map((item) => (
             <li key={item.id}>
-              <Link
-                to={item.id}
-                smooth
-                duration={200}
-                offset={-60}
-                className={clsx(
-                  'text-[13px] transition-colors cursor-pointer',
-                  active === item.id
-                    ? 'text-teal-600 dark:text-teal-400 font-medium'
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
-                )}
-              >
-                {item.label}
-              </Link>
+              {isPortfolio ? (
+                <RouterLink
+                  to={`/#${item.id}`}
+                  className={clsx(
+                    'text-[13px] transition-colors',
+                    active === item.id
+                      ? 'text-teal-700 dark:text-teal-400 font-medium'
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
+                  )}
+                >
+                  {item.label}
+                </RouterLink>
+              ) : (
+                <Link
+                  to={item.id}
+                  smooth
+                  duration={200}
+                  offset={-60}
+                  className={clsx(
+                    'text-[13px] transition-colors cursor-pointer',
+                    active === item.id
+                      ? 'text-teal-700 dark:text-teal-400 font-medium'
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
+                  )}
+                >
+                  {item.label}
+                </Link>
+              )}
             </li>
           ))}
+
+          {/* Portfolio link */}
           <li>
-            <a
-              href="https://sivanirosh.github.io/studyverse/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-[13px] font-medium text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors"
+            <RouterLink
+              to="/projects"
+              className={clsx(
+                'inline-flex items-center gap-1 text-[13px] transition-colors',
+                isPortfolio
+                  ? 'text-teal-700 dark:text-teal-400 font-medium'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-teal-700 dark:hover:text-teal-400'
+              )}
             >
-              <BookOpen className="w-3.5 h-3.5" />
-              Studyverse
-            </a>
+              Portfolio
+              <ArrowUpRight className="w-3 h-3" />
+            </RouterLink>
           </li>
+
+          {profile.featuredLink && (
+            <li>
+              <a
+                href={profile.featuredLink.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors"
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                {profile.featuredLink.label}
+              </a>
+            </li>
+          )}
         </ul>
 
+        {/* Right: theme toggle + hamburger */}
         <div className="flex items-center gap-1">
           <ThemeToggle />
           <button
@@ -112,7 +160,16 @@ export function Navbar() {
             aria-expanded={open}
             className="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <svg
+              className="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
               {open ? (
                 <>
                   <line x1="18" y1="6" x2="6" y2="18" />
@@ -130,40 +187,75 @@ export function Navbar() {
         </div>
       </nav>
 
+      {/* Mobile menu */}
       {open && (
         <div className="lg:hidden absolute top-16 inset-x-0 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-sm max-h-[calc(100vh-4rem)] overflow-y-auto">
           <ul className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-3">
             {NAV.map((item) => (
               <li key={item.id}>
-                <Link
-                  to={item.id}
-                  smooth
-                  duration={200}
-                  offset={-60}
-                  onClick={() => setOpen(false)}
-                  className={clsx(
-                    'block text-sm py-2 cursor-pointer',
-                    active === item.id
-                      ? 'text-teal-600 dark:text-teal-400 font-medium'
-                      : 'text-slate-700 dark:text-slate-300'
-                  )}
-                >
-                  {item.label}
-                </Link>
+                {isPortfolio ? (
+                  <RouterLink
+                    to={`/#${item.id}`}
+                    onClick={() => setOpen(false)}
+                    className={clsx(
+                      'block text-sm py-2',
+                      active === item.id
+                        ? 'text-teal-700 dark:text-teal-400 font-medium'
+                        : 'text-slate-700 dark:text-slate-300'
+                    )}
+                  >
+                    {item.label}
+                  </RouterLink>
+                ) : (
+                  <Link
+                    to={item.id}
+                    smooth
+                    duration={200}
+                    offset={-60}
+                    onClick={() => setOpen(false)}
+                    className={clsx(
+                      'block text-sm py-2 cursor-pointer',
+                      active === item.id
+                        ? 'text-teal-700 dark:text-teal-400 font-medium'
+                        : 'text-slate-700 dark:text-slate-300'
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
+
+            {/* Portfolio (mobile) */}
             <li>
-              <a
-                href="https://sivanirosh.github.io/studyverse/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <RouterLink
+                to="/projects"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-2 text-sm py-2 text-teal-600 dark:text-teal-400 font-medium"
+                className={clsx(
+                  'block text-sm py-2',
+                  isPortfolio
+                    ? 'text-teal-700 dark:text-teal-400 font-medium'
+                    : 'text-slate-700 dark:text-slate-300'
+                )}
               >
-                <BookOpen className="w-4 h-4" />
-                Studyverse
-              </a>
+                Portfolio
+              </RouterLink>
             </li>
+
+            {profile.featuredLink && (
+              <li>
+                <a
+                  href={profile.featuredLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-2 text-sm py-2 text-teal-700 dark:text-teal-400 font-medium"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  {profile.featuredLink.label}
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       )}

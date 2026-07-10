@@ -1,9 +1,11 @@
 import { lazy, Suspense } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/layout/Navbar'
 import { ScrollProgress } from './components/ui/ScrollProgress'
 import { Hero } from './components/sections/Hero'
 import { ErrorBoundary } from './components/ui/ErrorBoundary'
+import { publications } from './data/publications'
 
 const About = lazy(() => import('./components/sections/About').then((m) => ({ default: m.About })))
 const Timeline = lazy(() =>
@@ -25,6 +27,8 @@ const Contact = lazy(() =>
   import('./components/sections/Contact').then((m) => ({ default: m.Contact }))
 )
 
+const PortfolioPage = lazy(() => import('./pages/PortfolioPage'))
+
 function SectionFallback() {
   return (
     <div className="min-h-[60vh] px-6 py-24 max-w-5xl mx-auto space-y-6" aria-hidden>
@@ -40,7 +44,7 @@ function SectionFallback() {
   )
 }
 
-export default function App() {
+function MainPage() {
   return (
     <>
       <ScrollProgress />
@@ -52,7 +56,7 @@ export default function App() {
             <About />
             <Timeline />
             <Experience />
-            <Publications />
+            {publications.length > 0 && <Publications />}
             <Projects />
             <Certificates />
             <Contact />
@@ -61,5 +65,23 @@ export default function App() {
       </main>
       <Footer />
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route
+          path="/projects"
+          element={
+            <Suspense fallback={<SectionFallback />}>
+              <PortfolioPage />
+            </Suspense>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   )
 }

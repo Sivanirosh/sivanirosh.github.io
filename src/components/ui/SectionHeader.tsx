@@ -10,7 +10,7 @@ interface Props {
 export function SectionHeader({ label, title, description, className }: Props) {
   return (
     <div className={clsx('mb-10', className)}>
-      <p className="text-xs font-medium uppercase tracking-widest text-teal-600 dark:text-teal-400 mb-2">
+      <p className="text-xs font-medium uppercase tracking-widest text-teal-700 dark:text-teal-400 mb-2">
         {label}
       </p>
       <h2 className="text-2xl md:text-3xl font-serif text-slate-900 dark:text-slate-100 leading-tight">

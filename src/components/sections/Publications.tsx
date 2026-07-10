@@ -49,7 +49,7 @@ export function Publications() {
                 className={clsx(
                   'relative -mb-px pb-2 text-sm transition-colors',
                   filter === f.id
-                    ? 'text-teal-600 dark:text-teal-400 border-b-2 border-teal-600 dark:border-teal-400 font-medium'
+                    ? 'text-teal-700 dark:text-teal-400 border-b-2 border-teal-600 dark:border-teal-400 font-medium'
                     : 'text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
                 )}
               >
@@ -70,7 +70,7 @@ export function Publications() {
             <RevealWrapper key={pub.id} as="li" delay={i * 0.08}>
               <Card featured={pub.featured}>
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-2">
-                  <p className="text-xs uppercase tracking-widest text-teal-600 dark:text-teal-400">
+                  <p className="text-xs uppercase tracking-widest text-teal-700 dark:text-teal-400">
                     {pub.venueType} · {pub.year}
                   </p>
                 </div>

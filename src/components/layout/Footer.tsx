@@ -46,15 +46,17 @@ export function Footer() {
               <Linkedin className="w-4 h-4" />
             </a>
           )}
-          <a
-            href="https://sivanirosh.github.io/studyverse/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Studyverse learning blog"
-            className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-slate-800 hover:bg-teal-600 transition-colors"
-          >
-            <BookOpen className="w-4 h-4" />
-          </a>
+          {profile.featuredLink && (
+            <a
+              href={profile.featuredLink.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${profile.featuredLink.label} learning blog`}
+              className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-slate-800 hover:bg-teal-600 transition-colors"
+            >
+              <BookOpen className="w-4 h-4" />
+            </a>
+          )}
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
-import { ExternalLink, Github } from 'lucide-react'
+import { ArrowRight, ExternalLink, Github } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { projects } from '../../data/projects'
 import type { Project } from '../../types'
 import { Badge } from '../ui/Badge'
@@ -33,13 +34,20 @@ function spanClasses(p: Project): string {
 export function Projects() {
   const [filter, setFilter] = useState<Filter>('all')
 
+  // Only show featured projects on the main page
   const visible = useMemo(
-    () => (filter === 'all' ? projects : projects.filter((p) => p.category === filter)),
+    () =>
+      projects
+        .filter((p) => !p.hidden && p.featured)
+        .filter((p) => (filter === 'all' ? true : p.category === filter)),
     [filter]
   )
 
   return (
-    <section id="projects" className="bg-white dark:bg-slate-900 py-24 scroll-mt-16 border-t border-slate-100 dark:border-slate-800">
+    <section
+      id="projects"
+      className="bg-white dark:bg-slate-900 py-24 scroll-mt-16 border-t border-slate-100 dark:border-slate-800"
+    >
       <div className="max-w-5xl mx-auto px-6">
         <RevealWrapper>
           <SectionHeader label="Projects" title="Selected work." />
@@ -55,7 +63,7 @@ export function Projects() {
                 className={clsx(
                   'relative -mb-px pb-2 text-sm transition-colors',
                   filter === f.id
-                    ? 'text-teal-600 dark:text-teal-400 border-b-2 border-teal-600 dark:border-teal-400 font-medium'
+                    ? 'text-teal-700 dark:text-teal-400 border-b-2 border-teal-600 dark:border-teal-400 font-medium'
                     : 'text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
                 )}
               >
@@ -82,7 +90,9 @@ export function Projects() {
                 <Card className="h-full flex flex-col">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div className="flex items-center gap-2">
-                      {p.featured && <Badge className="bg-teal-50 dark:bg-teal-950 text-teal-700 dark:text-teal-400 border-teal-100 dark:border-teal-900">★ Featured</Badge>}
+                      <Badge className="bg-teal-50 dark:bg-teal-950 text-teal-700 dark:text-teal-400 border-teal-100 dark:border-teal-900">
+                        ★ Featured
+                      </Badge>
                       <span className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
                         {p.category === 'ai-medical'
                           ? 'AI & Medical'
@@ -140,6 +150,19 @@ export function Projects() {
             </RevealWrapper>
           ))}
         </div>
+
+        {/* View all CTA */}
+        <RevealWrapper delay={0.2}>
+          <div className="mt-10 text-center">
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors"
+            >
+              View all projects
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </RevealWrapper>
       </div>
     </section>
   )

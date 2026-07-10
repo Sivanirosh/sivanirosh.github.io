@@ -20,13 +20,13 @@ interface PartnerLogosProps {
   className?: string
 }
 
-export function PartnerLogos({ partners, size = 80, className }: PartnerLogosProps) {
+export function PartnerLogos({ partners, size = 48, className }: PartnerLogosProps) {
   if (!partners || partners.length === 0) return null
 
   const dim = { width: size, height: size }
 
   return (
-    <div className={clsx('flex items-center gap-1.5', className)}>
+    <div className={clsx('flex flex-wrap items-center gap-1.5', className)}>
       <span className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mr-1">
         with
       </span>

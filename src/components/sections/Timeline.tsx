@@ -28,7 +28,7 @@ export function Timeline() {
               <TimelineNode isLast={i === education.length - 1} />
               <Card>
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 mb-2">
-                  <p className="text-xs uppercase tracking-widest text-teal-600 dark:text-teal-400">
+                  <p className="text-xs uppercase tracking-widest text-teal-700 dark:text-teal-400">
                     {e.startYear} — {e.endYear === 'present' ? 'present' : e.endYear}
                   </p>
                   {e.award && <AwardBadge label={e.award} />}

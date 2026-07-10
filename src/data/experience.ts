@@ -1,91 +1,105 @@
 import type { ExperienceEntry } from '../types'
 
 export const experience: ExperienceEntry[] = [
-
-
   {
     id: 'ARTORG',
-    role: 'Research Engineer - Master Thesis',
+    role: 'Research Engineer — MSc Thesis',
     company: 'ARTORG Center for Biomedical Engineering Research',
-    logoUrl: 'https://www.artorg.unibe.ch/unibe/portal/fak_medizin/dept_weitere/ins_artorg/content/WEBuseonly_ARTORG_DD3601_eng.gif',
-    companyUrl: "https://www.artorg.unibe.ch/",
+    logoUrl:
+      'https://www.artorg.unibe.ch/unibe/portal/fak_medizin/dept_weitere/ins_artorg/content/WEBuseonly_ARTORG_DD3601_eng.gif',
+    companyUrl: 'https://www.artorg.unibe.ch/',
     location: 'Bern, Switzerland',
     startDate: 'Aug 2025',
     endDate: 'Feb 2026',
     achievements: [
-      'Awarded The Best Master Thesis Award for my work on Medical Vision-Language Models for Chest X-ray',
-      'Designed a physics-aware contrastive learning framework for Vision-Language Models in medical imaging, evaluated across nine international datasets.'
+      'Received the Best Thesis Award for work on medical vision–language models for chest X-ray analysis.',
+      'Designed a metadata-guided contrastive learning framework for medical imaging, evaluated across nine international chest X-ray datasets.',
     ],
-    tech: ['PyTorch', 'Weights & Biases', 'HPC / SLURM', 'Machine Learning', 'Medical Imaging', 'Vision-Language Models', 'Contrastive Learning'],
-  
+    tech: [
+      'PyTorch',
+      'Weights & Biases',
+      'HPC / SLURM',
+      'Machine Learning',
+      'Medical Imaging',
+      'Vision-Language Models',
+      'Contrastive Learning',
+    ],
   },
-
-
   {
     id: 'HEIA',
     role: 'Research Associate',
     company: 'HEIA',
     logoUrl: '/companyLogos/logo_heia-fr_version_courte.jpg',
-    companyUrl: "https://www.heia-fr.ch/fr/recherche-appliquee/instituts/sesi/",
+    companyUrl: 'https://www.heia-fr.ch/fr/recherche-appliquee/instituts/sesi/',
     location: 'Fribourg, Switzerland',
-    startDate: 'Sept 2023',
-    endDate: 'Sept 2025',
+    startDate: 'Sep 2023',
+    endDate: 'Sep 2025',
     achievements: [
-      'Designed and validated a generic hybrid digital twin methodology for predictive maintenance in the ModIA project, from on‑site measurements to presenting results to four industrial partners and at the AI Days 2024 and 2025 conferences.',
-      'Independently delivered machine learning solutions and vibration data analysis across ModIA, FileML, and SpindleMonitor, consistently producing clear, structured code and actionable insights.',
-      'Owned the full data‑analysis pipeline – from sensor measurements to UI automation – for the SpindleMonitor mandate, adapting the tool to Starrag’s operational needs with minimal supervision.'
+      'Designed and validated a generic hybrid digital-twin methodology for predictive maintenance in the ModIA project, from on-site measurements to results presented to four industrial partners and at AI Days 2024 and 2025.',
+      'Delivered machine-learning solutions and vibration-data analyses across ModIA, FileML, and SpindleMonitor, producing clear code and actionable insights.',
+      'Owned the full data-analysis pipeline — from sensor measurements to UI automation — for the SpindleMonitor mandate, adapting the tool to Starrag’s operational needs with minimal supervision.',
     ],
-    tech: ['Python', 'Machine Learning', 'Vibration Analysis', 'Digital Twins', 'Data Analysis', 'UI Programming'],
+    tech: [
+      'Python',
+      'Machine Learning',
+      'Vibration Analysis',
+      'Digital Twins',
+      'Data Analysis',
+      'UI Programming',
+    ],
   },
-
   {
     id: 'Liebherr',
     role: 'Engineering Intern',
     company: 'Liebherr',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Liebherr-Logo.svg/960px-Liebherr-Logo.svg',
-    companyUrl: "https://www.liebherr.com/fr-ch/groupe/sites/bulle-profil-3902923",
+    logoUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Liebherr-Logo.svg/960px-Liebherr-Logo.svg',
+    companyUrl: 'https://www.liebherr.com/fr-ch/groupe/sites/bulle-profil-3902923',
     location: 'Bulle, Switzerland',
-    startDate: 'Sept 2019',
+    startDate: 'Sep 2019',
     endDate: 'Aug 2020',
     achievements: [
-      '12-months intership across production, technical office and hydraulic and thermal R&D.' ],
-    tech: ['FEM', 'CAD', 'CAM', 'CNC', 'Hydraulic', 'Thermal', 'R&D', 'Prototyping'],
+      'Completed a 12-month internship across production, the technical office, and hydraulic and thermal R&D.',
+    ],
+    tech: ['FEM', 'CAD', 'CAM', 'CNC', 'Hydraulics', 'Thermal Systems', 'R&D', 'Prototyping'],
   },
-  
   {
     id: 'ELIS',
     role: 'Customer Service Manager',
     company: 'ELIS',
     logoUrl: '/companyLogos/Elis_logo.svg',
-    companyUrl: "https://ch.elis.com/fr/secteurs-dactivite/elis-cleanroom",
+    companyUrl: 'https://ch.elis.com/fr/secteurs-dactivite/elis-cleanroom',
     location: 'Brügg, Switzerland',
     startDate: 'Mar 2019',
     endDate: 'Aug 2019',
     achievements: [
       'Achieved full autonomy in end-to-end order-to-cash and ERP management within a few months, earning complete managerial trust.',
       'Led continuous improvement of procedures and voluntarily took ownership of additional high-impact projects beyond daily responsibilities.',
-      'Served as trilingual coordinator (FR/DE/EN) for clients and suppliers, ensuring seamless cross-border operations.'
+      'Served as trilingual coordinator (FR/DE/EN) for clients and suppliers, ensuring seamless cross-border operations.',
     ],
     tech: ['ERP Systems', 'Process Improvement', 'Multilingual Communication (FR/DE/EN)'],
   },
-
   {
     id: 'HIB',
     role: 'Medical Simulation Technical Assistant',
     company: 'HIB (Hôpital intercantonal de la Broye)',
     logoUrl: '/companyLogos/logo_hib.svg',
-    companyUrl: "https://hopital-broye.ch/",
+    companyUrl: 'https://hopital-broye.ch/',
     location: 'Payerne, Switzerland',
     startDate: 'Oct 2018',
     endDate: 'Feb 2019',
     achievements: [
       'Advised on the simulation centre’s financial plan and training policy, leveraging analytical skills to shape its strategic foundation.',
       'Streamlined administrative and inventory workflows by programming databases and Excel tools, significantly improving operational efficiency.',
-      'Independently managed day‑to‑day operations — equipment preparation, AV support, and logistics — ensuring flawless training sessions even in the manager’s absence.',
+      'Independently managed day-to-day operations — equipment preparation, AV support, and logistics — ensuring reliable training sessions in the manager’s absence.',
     ],
-    tech: ['Medical Simulation Equipment', 'Database & Excel Automation', 'Audio‑Visual Technical Support', 'Process Optimization'],
+    tech: [
+      'Medical Simulation Equipment',
+      'Database & Excel Automation',
+      'Audio-Visual Technical Support',
+      'Process Optimization',
+    ],
   },
-
   {
     id: 'owner',
     role: 'Owner',
@@ -95,10 +109,7 @@ export const experience: ExperienceEntry[] = [
     location: 'La Chaux-de-Fonds, Switzerland',
     startDate: 'Jan 2012',
     endDate: 'Oct 2018',
-    achievements: [
-      'Managed a family business for 6 years, from startup to stable revenue.',
-    ],
+    achievements: ['Managed a family business for 6 years, from startup to stable revenue.'],
     tech: ['Management', 'Customer Service', 'Sales'],
   },
-
 ]

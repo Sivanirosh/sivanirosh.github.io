@@ -60,7 +60,7 @@ export function Hero() {
           <motion.p
             {...FADE_UP}
             transition={{ duration: 0.35, delay: 0, ease: 'easeOut' }}
-            className="text-xs font-medium uppercase tracking-widest text-teal-600 dark:text-teal-400 mb-4"
+            className="text-xs font-medium uppercase tracking-widest text-teal-700 dark:text-teal-400 mb-4"
           >
             {displayTitle}
           </motion.p>
@@ -91,27 +91,29 @@ export function Hero() {
             ))}
           </motion.div>
 
-          <motion.div
-            {...FADE_UP}
-            transition={{ duration: 0.35, delay: 0.55, ease: 'easeOut' }}
-            className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 dark:border-slate-800 pt-8"
-          >
-            {profile.stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.55 + i * 0.08, ease: 'easeOut' }}
-              >
-                <p className="text-2xl font-medium font-serif text-slate-900 dark:text-slate-100">
-                  {s.value}
-                </p>
-                <p className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-1">
-                  {strip(s.label)}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+          {profile.stats.length > 0 && (
+            <motion.div
+              {...FADE_UP}
+              transition={{ duration: 0.35, delay: 0.55, ease: 'easeOut' }}
+              className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 dark:border-slate-800 pt-8"
+            >
+              {profile.stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.55 + i * 0.08, ease: 'easeOut' }}
+                >
+                  <p className="text-2xl font-medium font-serif text-slate-900 dark:text-slate-100">
+                    {s.value}
+                  </p>
+                  <p className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mt-1">
+                    {strip(s.label)}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
 
           <motion.div
             {...FADE_UP}
@@ -137,21 +139,23 @@ export function Hero() {
               <span className="relative">Get in touch</span>
               <ArrowRight className="relative w-4 h-4" />
             </Link>
-            <a
-              href="https://sivanirosh.github.io/studyverse/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                inline-flex items-center gap-2 text-sm font-medium
-                text-slate-700 dark:text-slate-200
-                px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700
-                hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400
-                transition-colors
-              "
-            >
-              <BookOpen className="w-4 h-4" />
-              Studyverse
-            </a>
+            {profile.featuredLink && (
+              <a
+                href={profile.featuredLink.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  inline-flex items-center gap-2 text-sm font-medium
+                  text-slate-700 dark:text-slate-200
+                  px-5 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700
+                  hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400
+                  transition-colors
+                "
+              >
+                <BookOpen className="w-4 h-4" />
+                {profile.featuredLink.label}
+              </a>
+            )}
             {profile.email && !profile.email.startsWith('TODO:') && (
               <a
                 href={`mailto:${profile.email}`}

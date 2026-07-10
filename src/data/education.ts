@@ -11,11 +11,11 @@ export const education: EducationEntry[] = [
     location: 'Bern, Switzerland',
     award: 'Best Thesis Award 2026',
     description:
-      'Developed a metadata-guided contrastive learning method (KAT-InfoNCE) to improve cross-institution robustness of medical vision–language models for chest X-ray analysis..',
+      'Developed a metadata-guided contrastive learning method (KAT-InfoNCE) to improve cross-institution robustness of medical vision–language models for chest X-ray analysis.',
   },
   {
     id: 'bsc-heia',
-    institution: "University of Applied Science of Fribourg / HEIA-FR",
+    institution: 'University of Applied Sciences of Fribourg / HEIA-FR',
     degree: 'BSc',
     field: 'Mechanical Engineering',
     startYear: 2020,
@@ -27,13 +27,11 @@ export const education: EducationEntry[] = [
   },
   {
     id: 'bsc-eco',
-    institution: "University of Neuchâtel",
+    institution: 'University of Neuchâtel',
     degree: 'BSc',
     field: 'Economics and Business',
     startYear: 2014,
     endYear: 2017,
-    location: 'Neuchätel, Switzerland',
-    description:
-      "",
+    location: 'Neuchâtel, Switzerland',
   },
 ]
