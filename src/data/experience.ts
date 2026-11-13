@@ -2,6 +2,31 @@ import type { ExperienceEntry } from '../types'
 
 export const experience: ExperienceEntry[] = [
   {
+    id: 'SwissAIStartup',
+    role: 'Software Engineer (AI/ML)',
+    company: 'Swiss AI startup (stealth)',
+    logoUrl: undefined,
+    companyUrl: undefined,
+    location: 'Zug, Switzerland',
+    startDate: 'Jul 2026',
+    endDate: 'present',
+    achievements: [
+      'Designed and built the evaluation/benchmarking engine and agent harness from scratch, raising internal benchmark performance from 60% to over 85% across diverse agentic tasks.',
+      'Introduced observability and eval-gated CI: every new feature is validated against custom eval suites, catching regressions before deployment.',
+      'Architected core agent subsystems — tool calling, memory, and RAG — plus a fast “System 1” decision model, improving quality and reliability in production.',
+      'Ship end-to-end AI systems to production, integrating models into scalable APIs and user-facing products.',
+    ],
+    tech: [
+      'Python',
+      'TypeScript',
+      'Agentic AI',
+      'LLM Engineering',
+      'RAG',
+      'Eval Engineering',
+      'CI/CD',
+    ],
+  },
+  {
     id: 'ARTORG',
     role: 'Research Engineer — MSc Thesis',
     company: 'ARTORG Center for Biomedical Engineering Research',

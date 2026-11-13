@@ -50,6 +50,7 @@ export const profile: Profile = {
   about: [
     'I am a mechanical engineer and AI researcher who works across the complete path from physical systems and data to tested software. I care about sound modelling, clear interfaces, and solutions that remain useful outside a controlled demonstration.',
     'At ARTORG, I developed a metadata-guided contrastive learning method for chest X-ray vision–language models and evaluated it across nine international datasets. The work received the Best Thesis Award from the University of Bern MSc in Artificial Intelligence in Medicine.',
+    'I currently work as a Software Engineer (AI/ML) at a Swiss AI startup, where I built the evaluation and benchmarking engine for agentic systems from scratch and introduced eval-gated CI — raising internal benchmark performance from 60% to over 85%.',
     'Alongside research, I build full-stack and local-first products for engineering, learning, and developer workflows. These projects combine domain modelling, backend systems, data pipelines, accessible interfaces, and deployment — the full product surface rather than isolated prototypes.',
   ],
 }
